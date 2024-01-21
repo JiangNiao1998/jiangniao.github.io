@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DALL.E Prompt Helper</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .input-group {
+            margin-bottom: 10px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .options-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        #finalPrompt {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 4px;
+            min-height: 50px;
+            font-family: monospace;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h1>DALL.E Prompt Helper</h1>
+    
+    <div class="input-group">
+        <label for="basePrompt">基础输入框</label>
+        <input type="text" id="basePrompt" placeholder="输入您的基础提示词" oninput="updatePrompt()">
+    </div>
+    
+    <div class="options-container">
+        <!-- Style options -->
+        <div class="input-group">
+            <select id="styleOptions" onchange="updatePrompt()">
+                <option value="">风格</option>
+                <option value=", acrylic">丙烯</option>
+                <option value=", watercolor">水彩</option>
+                <!-- 更多风格选项 -->
+            </select>
+        </div>
+        
+        <!-- Lighting options -->
+        <div class="input-group">
+            <select id="lightingOptions" onchange="updatePrompt()">
+                <option value="">光线</option>
+                <option value=", natural light">自然光</option>
+                <!-- 更多光线选项 -->
+            </select>
+        </div>
+        
+        <!-- Aspect ratio options -->
+        <div class="input-group">
+            <select id="aspectRatioOptions" onchange="updatePrompt()">
+                <option value="">比例</option>
+                <option value=", 16:9">16:9</option>
+                <option value=", 4:3">4:3</option>
+                <!-- 更多尺寸比例选项 -->
+            </select>
+        </div>
+        
+        <!-- Angle of view options -->
+        <div class="input-group">
+            <select id="viewAngleOptions" onchange="updatePrompt()">
+                <option value="">视角</option>
+                <option value=", bird's-eye view">鸟瞰视角</option>
+                <option value=", worm's-eye view">蚁视视角</option>
+                <!-- 更多视角选项 -->
+            </select>
+        </div>
+        
+        <!-- Additional options can be added here in the same pattern -->
+    </div>
+    
+    <div id="finalPrompt"></div>
+
+    <script>
+        function updatePrompt() {
+            var basePrompt = document.getElementById('basePrompt').value;
+            var styleOption = document.getElementById('styleOptions').value;
+            var lightingOption = document.getElementById('lightingOptions').value;
+            var aspectRatioOption = document.getElementById('aspectRatioOptions').value;
+            var viewAngleOption = document.getElementById('viewAngleOptions').value;
+            // Concatenate all the options with the base prompt
+            var finalPrompt = basePrompt + styleOption + lightingOption + aspectRatioOption + viewAngleOption;
+            document.getElementById('finalPrompt').textContent = finalPrompt.trim();
+        }
+    </script>
+</body>
+</html>
